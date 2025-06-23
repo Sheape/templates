@@ -1,0 +1,20 @@
+name = "Git/GitHub"
+description = "This template sets up a Git repository with a conventional commit style. It also includes a PR template and a good README"
+kickstart_version = 1
+authors = ["Sheape"]
+keywords = ["git", "github", "repository", "conventional commits", "readme"]
+
+[[variables]]
+name = "license"
+default = "mit"
+prompt = "What is the license of your project?"
+choices = [
+    "mit",
+    "apache",
+    "gpl-3.0",
+]
+
+[[variables]]
+name = "author"
+default = "Sheape"
+prompt = "What is the name of the main author?"
