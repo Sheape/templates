@@ -1,0 +1,68 @@
+{%- set pyproject_name = cookiecutter.__common.project_name|lower()|replace('-','_') -%}
+[project]
+name = "{{ pyproject_name }}"
+version = "0.1.0"
+description = "{{ cookiecutter.__common.project_desc }}"
+authors = ["{{ cookiecutter.__common.author }} <{{ cookiecutter.__common.email }}>"]
+{%- if cookiecutter.__common.license == "mit" %}
+license = "MIT"
+{%- elif cookiecutter.__common.license == "apache" %}
+license = "Apache-2.0"
+{%- elif cookiecutter.__common.license == "gplv3.0" %}
+license = "GPL-3.0-only"
+{%- endif %}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain-community>=0.3.13",
+    "langgraph-cli>=0.1.73",
+    "langgraph>=0.2.74",
+    "tavily-python>=0.5.0",
+    "langchain>=0.3.20",
+    {% if cookiecutter.has_custom_middleware -%}
+    "fastapi>=0.115.12",
+    {% endif -%}
+    "langchain-openai>=0.3.12",
+    "flatten-dict>=0.4.2",
+]
+
+[dependency-groups]
+dev = [
+    "langgraph-cli[inmem]>=0.1.73",
+    "pyright>=1.1.391",
+    "ruff>=0.8.4",
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "E", # Pycodestyle errors
+    "I", # Isort
+    "F", # Pyflakes
+    "B", # Flakes bugbear
+    "N", # PEP 8 Naming Conventions
+    "C", # Pylint Conventions
+    "R", # Refactor
+    "C4", # Comprehension
+    "SIM", # Simplify
+    "UP" # Pyupgrade
+]
+ignore = []
+
+[tool.ruff]
+line-length = 120
+show-fixes = true
+fix = true
+target-version = "py312"
+indent-width = 4
+
+[tool.ruff.format]
+indent-style = "space"
+
+[lint.isort]
+known-local-folder = ["{{ pyproject_name }}"]
+force-sort-within-sections = true
+order-by-type = true
+from-first = false
+
+[tool.poetry.package.include]
+src = { from = "{{ pyproject_name }}" }

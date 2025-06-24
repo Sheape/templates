@@ -4,6 +4,7 @@
         "repo_name": "{{ cookiecutter.repo_name }}",
         "project_desc": "{{ cookiecutter.project_desc }}",
         "author": "{{ cookiecutter.author }}",
+        "email": "{{ cookiecutter.email }}",
         "github_user": "{{ cookiecutter.github_user }}",
         "license": "{{ cookiecutter.license }}",
         "year": "{{ cookiecutter.__year }}"
@@ -11,5 +12,6 @@
     "with_env": true,
     "enable_linting": true,
     "enable_releases": true,
-    "has_documentation": true
+    "has_documentation": true,
+    "has_custom_middleware": false
 }

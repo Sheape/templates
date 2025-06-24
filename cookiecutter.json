@@ -3,6 +3,7 @@
   "repo_name": "{{ cookiecutter.__project_name | lower | replace(' ', '-') }}",
   "project_desc": "short project description",
   "author": "author name",
+  "email": "email@example.com",
   "github_user": "{{ cookiecutter.author }}",
   "license": [
     "mit",

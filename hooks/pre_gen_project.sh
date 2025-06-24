@@ -6,6 +6,7 @@ echo '{
         "project_desc": "{{ cookiecutter.project_desc }}",
         "repo_name": "{{ cookiecutter.repo_name }}",
         "author": "{{ cookiecutter.author }}",
+        "email": "{{ cookiecutter.email }}",
         "github_user": "{{ cookiecutter.github_user }}",
         "license": "{{ cookiecutter.license }}",
         "year": "{{ cookiecutter.__year }}"
