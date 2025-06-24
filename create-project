@@ -1,0 +1,85 @@
+#!/usr/bin/env sh
+
+# tmp_dir="$(mktemp -t cookiecutter.XXXXXX -d)"
+# trap "rm -rf ${tmp_dir}" EXIT
+lock_file="/tmp/cookiecutter.lock"
+
+if [ -e "${lock_file}" ]; then
+    gum style --foreground 1 "ERROR: There is currently an ongoing project creation. Please accomplish that first before creating a new one."
+    exit 69
+fi
+
+touch "${lock_file}"
+cp cookiecutter.json cookiecutter.json.old
+
+post_cleanup() {
+    rm -f "${lock_file}"
+    mv cookiecutter.json.old cookiecutter.json
+}
+
+trap 'post_cleanup' EXIT
+
+# Arguments:
+# - $1: key to modify
+# - $2: value to set
+# - $3: file to modify (cookiecutter.json)
+# - $4: type of value (string or json)
+mod_inplace_json() {
+    if [ "$4" = "json" ]; then
+        contents="$(jq --arg key "$1" --argjson value "$2" '.[$key]= $value' "$3")" && \
+        echo "${contents}" > "$3"
+    else
+        contents="$(jq --arg key "$1" --arg value "$2" '.[$key]= $value' "$3")" && \
+        echo "${contents}" > "$3"
+    fi
+}
+
+# Arguments:
+# - $1: base project name (e.g., "my-project")
+# - $2: path to the default configuration file (e.g., "./rust/cookiecutter.json")
+replace_default_conf() {
+    cp "$2" "${2}.old" && \
+    contents="$(jq .__common ./"$1"-base-tmp/common_config_tmp.json)" && \
+    mod_inplace_json "__common" "${contents}" "$2" "json"
+}
+
+cleanup_common_config() {
+    rm -f ./"$1"-base-tmp/common_config_tmp.json
+}
+
+# Arguments:
+# - $1: base project name (e.g., "my-project")
+copy_base_to_flavor() {
+    cleanup_common_config "$1" && \
+    cp -r ./"$1"-base-tmp/** ./"$1"/ && \
+    rm -rf ./"$1"-base-tmp
+}
+
+# Arguments:
+# - $1: base project name (e.g., "my-project")
+# - $2: directory of the flavor (e.g., "./rust/")
+flavor_setup() {
+    replace_default_conf "$1" "${2}/cookiecutter.json" && \
+        cookiecutter "$2" && \
+        mv "$2"/cookiecutter.json.old "$2"/cookiecutter.json && \
+        copy_base_to_flavor "$1"
+}
+
+##### MAIN ######
+gum style --foreground 4 "This will now create a new project using Cookiecutter."
+gum style --foreground 5 "———————————————————————[ STEP 1: Base ]———————————————————————"
+project_name="$(gum input --cursor.foreground 3 --placeholder "Project Name" --prompt "Enter the project name: ")"
+
+mod_inplace_json "__project_name" "${project_name}" "cookiecutter.json" "string"
+
+cookiecutter .
+gum style --foreground 5 "———————————————————————[ STEP 2: Flavor ]———————————————————————"
+
+choice="$(gum table < ./flavors.csv | cut -d ',' -f 1)"
+case "$choice" in
+    "rust-backend-api") flavor_setup "$project_name" "./rust/";;
+    "none") gum style --foreground 3 "No flavor selected, the base template will be final template." && cleanup_common_config "$project_name" && mv "$project_name"-base-tmp "$project_name";;
+    *) echo default;; # This should never run as gum filter cant even have default value.
+esac
+
+gum style --foreground 2 "Done"

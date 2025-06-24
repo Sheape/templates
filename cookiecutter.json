@@ -1,0 +1,15 @@
+{
+  "__project_name": "project",
+  "repo_name": "{{ cookiecutter.__project_name | lower | replace(' ', '-') }}",
+  "author": "author name",
+  "github_user": "{{ cookiecutter.author }}",
+  "license": [
+    "mit",
+    "gplv3.0",
+    "apache"
+  ],
+  "__year": "{%- now 'utc', '%Y' -%}",
+  "_extensions": [
+    "cookiecutter.extensions.TimeExtension"
+  ]
+}

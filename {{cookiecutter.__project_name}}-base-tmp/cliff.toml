@@ -5,8 +5,8 @@
 # Configuration options are organized into tables and keys.
 # See documentation for more information on available options.
 [remote.github]
-owner = "{{ github_user }}"
-repo = "{{ repo_name }}"
+owner = "{{ cookiecutter.github_user }}"
+repo = "{{ cookiecutter.repo_name }}"
 
 [changelog]
 # changelog header
@@ -36,7 +36,7 @@ footer = """
 """
 postprocessors = [
   # Replace the placeholder `<REPO>` with a URL.
-  { pattern = '<REPO>', replace = "https://github.com/{{ github_user }}/{{ repo_name }}" }, # replace repository URL
+  { pattern = '<REPO>', replace = "https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}" }, # replace repository URL
 ]
 
 [git]
