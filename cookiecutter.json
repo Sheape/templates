@@ -1,6 +1,7 @@
 {
   "__project_name": "project",
   "repo_name": "{{ cookiecutter.__project_name | lower | replace(' ', '-') }}",
+  "project_desc": "short project description",
   "author": "author name",
   "github_user": "{{ cookiecutter.author }}",
   "license": [

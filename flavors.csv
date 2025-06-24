@@ -1,3 +1,4 @@
-Code,Programming Language,Type
+Code,Programming Language,Description
 rust-backend-api,Rust,Backend API
+python-langgraph,Python,AI Agent with LangGraph
 none,Misc,Misc
