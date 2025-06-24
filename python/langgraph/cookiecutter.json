@@ -13,5 +13,6 @@
     "enable_linting": true,
     "enable_releases": true,
     "has_documentation": true,
-    "has_custom_middleware": false
+    "has_custom_middleware": false,
+    "__graph_dir": "{{ cookiecutter.__common.project_name|lower()|replace('-', '_') }}"
 }
