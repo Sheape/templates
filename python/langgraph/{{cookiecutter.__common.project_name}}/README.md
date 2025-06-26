@@ -36,24 +36,14 @@ LangGraph AI Agent
 ![image](https://github.com/user-attachments/assets/5275ae88-28d6-4c5c-b5af-1796d62479e8)
 
 ## Setup
-{%- set counter = namespace(value=1) %}
 1. Fork or clone this repository.
-{%- set counter.value = counter.value + 1 %}
 2. Install [python](https://www.python.org/downloads/) (`v3.12`).
-{% set counter.value = counter.value + 1 %}
-{%- if cookiecutter.with_env -%}
-{{ counter.value }}. Create `.env` file add the keys from `.env.example`.
-{% set counter.value = counter.value + 1 %}
-{%- endif -%}
-{{ counter.value }}. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/) as it is used to manage dependencies.
-{%- set counter.value = counter.value + 1 %}
-{{ counter.value }}. Create a virtual environment using `uv venv`.
-{%- set counter.value = counter.value + 1 %}
-{{ counter.value }}. Activate the virtual environment with `source venv/bin/activate` on Linux/macOS or `venv\Scripts\activate.bat` on Windows.
-{%- set counter.value = counter.value + 1 %}
-{{ counter.value }}. Install dependencies by running `uv sync`.
-{%- set counter.value = counter.value + 1 %}
-{{ counter.value }}. Run LangGraph locally with `langgraph dev`.
+3. Create `.env` file add the keys from `.env.example`.
+4. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/) as it is used to manage dependencies.
+5. Create a virtual environment using `uv venv`.
+6. Activate the virtual environment with `source venv/bin/activate` on Linux/macOS or `venv\Scripts\activate.bat` on Windows.
+7. Install dependencies by running `uv sync`.
+8. Run LangGraph locally with `langgraph dev`.
 
 ## Do you have a question?
 If you have any question or inquiry, feel free to email me or open an issue here. I'll be sure to respond and provide insights given your question.

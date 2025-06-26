@@ -9,7 +9,7 @@
         "license": "{{ cookiecutter.license }}",
         "year": "{{ cookiecutter.__year }}"
     },
-    "with_env": true,
+    "graph_name": "{{ cookiecutter.__common.project_name|lower()|replace('-', '_') }}",
     "enable_linting": true,
     "enable_releases": true,
     "has_documentation": true,

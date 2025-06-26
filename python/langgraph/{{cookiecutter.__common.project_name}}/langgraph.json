@@ -1,10 +1,8 @@
 {
   "dependencies": ["."],
   "graphs": {
-    "{{ cookiecutter.__graph_dir }}": "./{{ cookiecutter.__graph_dir }}/agent.py:graph"
+    "{{ cookiecutter.graph_name }}": "./{{ cookiecutter.graph_name }}/agent.py:graph"
   },
-  {%- if cookiecutter.with_env %}
   "env": ".env",
-  {%- endif %}
   "python_version": "3.12"
 }

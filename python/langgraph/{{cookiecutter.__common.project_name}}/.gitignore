@@ -1,7 +1,5 @@
-{%- if cookiecutter.with_env -%}
 .env.*
 .env
 !.env.template
-{% endif -%}
 .langgraph_api/
 __pycache__
