@@ -3,5 +3,5 @@
 from .states import InputState
 
 def example_node(input: InputState):
-    print(input.example)
+    print(input['example'])
     pass

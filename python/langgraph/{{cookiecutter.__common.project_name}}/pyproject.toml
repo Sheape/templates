@@ -1,5 +1,5 @@
 [project]
-name = "{{ cookiecutter.__graph_dir }}"
+name = "{{ cookiecutter.__common.project_name }}"
 version = "0.1.0"
 description = "{{ cookiecutter.__common.project_desc }}"
 authors = ["{{ cookiecutter.__common.author }} <{{ cookiecutter.__common.email }}>"]
@@ -58,10 +58,10 @@ indent-width = 4
 indent-style = "space"
 
 [lint.isort]
-known-local-folder = ["{{ cookiecutter.__graph_dir }}"]
+known-local-folder = ["{{ cookiecutter.graph_name }}"]
 force-sort-within-sections = true
 order-by-type = true
 from-first = false
 
 [tool.poetry.package.include]
-src = { from = "{{ cookiecutter.__graph_dir }}" }
+src = { from = "{{ cookiecutter.graph_name }}" }

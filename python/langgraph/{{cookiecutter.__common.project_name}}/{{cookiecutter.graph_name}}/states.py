@@ -1,6 +1,5 @@
 """States for the LangGraph agent."""
 
-from enum import Enum
 from typing import TypedDict
 
 from langchain_core.messages import HumanMessage
