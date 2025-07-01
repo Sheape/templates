@@ -77,7 +77,7 @@ gum style --foreground 5 "——————————————————
 
 choice="$(gum table < ./flavors.csv | cut -d ',' -f 1)"
 case "$choice" in
-    "rust-backend-api") flavor_setup "$project_name" "./rust/";;
+    "rust-backend-api") flavor_setup "$project_name" "./rust/backend-axum/";;
     "python-langgraph") flavor_setup "$project_name" "./python/langgraph/";;
     "none") gum style --foreground 3 "No flavor selected, the base template will be final template." && cleanup_common_config "$project_name" && mv "$project_name"-base-tmp "$project_name";;
     *) echo default;; # This should never run as gum filter cant even have default value.
